@@ -9,6 +9,7 @@ public class MainManager : MonoBehaviour
 {
     [Header("Buttons")]
     [SerializeField] private Button buttonStartGame;
+    [SerializeField] private String sceneToLoad;
 
     void Awake()
     {
@@ -16,12 +17,12 @@ public class MainManager : MonoBehaviour
     }
     private void OnPressStartGame()
     {
-        StartCoroutine(LoadGameplayScene());
+        StartCoroutine(LoadGameplayScene());        
     }
 
     private IEnumerator LoadGameplayScene()
     {
-        AsyncOperation loadOperation = SceneManager.LoadSceneAsync("RunnerScene");
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneToLoad);
         loadOperation.allowSceneActivation = false;
 
         while (!loadOperation.isDone)
