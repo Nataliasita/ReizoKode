@@ -30,7 +30,7 @@ public class RunnerGameManager : MonoBehaviour
     [SerializeField] private GroundSpawner groundSpawner;
     [SerializeField] private LifeController lifeController;
     [SerializeField] private StartScreenController startScreen;
-
+    
     private bool levelCompleted = false;
     public static int currentLevel = 0;
 
@@ -75,7 +75,7 @@ public class RunnerGameManager : MonoBehaviour
         winPanel.SetActive(false); 
         losePanel.SetActive(false);
 
-   
+        
         if (level < groundSpawner.groundTilePrefabs.Count)
         {
             groundSpawner.SetCurrentLevel(level);
