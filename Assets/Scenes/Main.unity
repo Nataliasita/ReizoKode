@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -249,7 +249,6 @@ GameObject:
   - component: {fileID: 222331938}
   - component: {fileID: 222331937}
   - component: {fileID: 222331936}
-  - component: {fileID: 222331939}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -705,7 +704,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 565, y: -369}
+  m_AnchoredPosition: {x: 490, y: -379}
   m_SizeDelta: {x: 184, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &575539266
@@ -1119,7 +1118,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: -166}
+  m_AnchoredPosition: {x: 247, y: -166}
   m_SizeDelta: {x: 184, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1057166373
@@ -2094,7 +2093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 800, y: -171}
+  m_AnchoredPosition: {x: 685, y: -171}
   m_SizeDelta: {x: 184, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1571581160
