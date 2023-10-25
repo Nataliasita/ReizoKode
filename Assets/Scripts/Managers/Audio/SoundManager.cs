@@ -63,4 +63,10 @@ public class SoundManager : MonoBehaviour
     {
         sfxSource.volume = volume;
     }
+
+    public bool LoopMusic
+    {
+        get { return sfxSource.loop; }
+        set { sfxSource.loop = value; }
+    }
 }

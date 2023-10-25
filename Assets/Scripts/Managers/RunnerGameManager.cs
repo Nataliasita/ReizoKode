@@ -26,6 +26,12 @@ public class RunnerGameManager : MonoBehaviour
 
     public GameObject losePanel;
 
+    private bool prefabInstantiatedDam = false;
+
+    public GameObject prefabDam; 
+
+    private SoundManager soundManager;
+
     [Header("Other Components")]
     [SerializeField] private GroundSpawner groundSpawner;
     [SerializeField] private LifeController lifeController;
@@ -36,10 +42,17 @@ public class RunnerGameManager : MonoBehaviour
 
     private void Awake()
     {        
+        soundManager = GameObject.FindObjectOfType<SoundManager>();
         OnLoadAllScenes();
-
+        soundManager.PlayMusic("Music Level");
+        soundManager.MusicVolume(0.1f);
+        InvokeRepeating("PlaySoundAmbientDay", 0f, 25f);
     }
 
+    private void PlaySoundAmbientDay(){
+        soundManager.PlaySFX("Day");
+        soundManager.LoopMusic = true;
+    }
     private void OnLoadAllScenes()
     {        
         startScreen.startScreenPanel.SetActive(true);
@@ -74,16 +87,22 @@ public class RunnerGameManager : MonoBehaviour
     {
         winPanel.SetActive(false); 
         losePanel.SetActive(false);
-
         
-        if (level < groundSpawner.groundTilePrefabs.Count)
+        if (!prefabInstantiatedDam && level < groundSpawner.groundTilePrefabs.Count)
         {
             groundSpawner.SetCurrentLevel(level);
 
             progressBar.maxValue = levelDuration;
-            progressBar.value = 0;            
+            progressBar.value = 0;       
 
             StartCoroutine(LevelTimer());
+
+            Vector3 spawnPosition = new Vector3(-44.516f, 14f, 4148f);
+            Quaternion spawnRotation = Quaternion.Euler(0, 180, 0);
+
+            Instantiate(prefabDam, spawnPosition, spawnRotation);
+
+            prefabInstantiatedDam = true;
         }
     }
 
@@ -122,11 +141,18 @@ public class RunnerGameManager : MonoBehaviour
     IEnumerator LevelTimer()
     {
         float timeElapsed = 0f;
+        bool timerSoundPlayed = false;    
 
         while (timeElapsed < levelDuration)
         {
             progressBar.value = timeElapsed;
             timeElapsed += Time.deltaTime;
+            int eightyPercent = (int)(0.9f * levelDuration);
+            if (timeElapsed >= eightyPercent && !timerSoundPlayed)
+            {
+                soundManager.PlaySFX("Timer");
+                timerSoundPlayed = true;
+            }
             yield return null;
         }
 
@@ -153,6 +179,7 @@ public class RunnerGameManager : MonoBehaviour
                 Time.timeScale = 0;
                 startScreen.startScreenPanel.SetActive(false);
                 SceneManager.LoadScene("EndScene");
+                soundManager.PlayMusic("Music Win");
             }
         });
 
