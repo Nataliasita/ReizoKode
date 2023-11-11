@@ -14,10 +14,10 @@ public class Obstacle : MonoBehaviour
         runnerGameManager = FindObjectOfType<RunnerGameManager>();
         lifeController = FindObjectOfType<LifeController>();
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (collision.gameObject.name == "Player")
-        {
+        if(collider.CompareTag("Player"))
+        { 
             lifeController.lifes--;
             if(lifeController.lifes == 0 ) 
             {

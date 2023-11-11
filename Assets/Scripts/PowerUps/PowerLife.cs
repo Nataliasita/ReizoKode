@@ -16,7 +16,7 @@ public class PowerLife : MonoBehaviour
         if(collider.CompareTag("Player"))
         {   
             lifeController.lifes++;
-            soundManager.PlaySFX("PowerUp");
+            // soundManager.PlaySFX("PowerUp");
             Destroy(gameObject);
         }
         

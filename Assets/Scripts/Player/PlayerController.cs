@@ -1,22 +1,33 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Controller")]
-    [SerializeField] private float speed = 5;
-    [SerializeField] private Rigidbody rb;
     [SerializeField] float horizontalMultiplier = 2;
-    [SerializeField] private float jumpForce = 10f;
-    public Animator anim;
     private ScoreUIController scoreManager;
-
-    private bool isJumping = false;
-    float horizontalInput;
+    public CharacterController controller;
+    public float speed = 6f;
+    public float gravity =-9.81f;
+    Vector3 velocity;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+    public Transform groundCheck;
+    private bool isGrounded;
+    public float jumpForce = 3f;
+    public Animator animator;
+    public string movementAnimator;
+    public string groundAnimator;
+    public string hitAnimator;
+    public string leftAnimator;
+    public string rightAnimator;
     private SoundManager soundManager;
+
+    public float addSpeed = 5.0f;
+
+    float horizontalInput;
+    float verticalInput;
 
     private void Awake()
     {
@@ -25,60 +36,80 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {   
         scoreManager = FindObjectOfType<ScoreUIController>();
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
-    
+    void Update() {
+        
 
-    private void Update()
-    {
-        horizontalInput = Input.GetAxis("Horizontal");
-        if (Input.GetButtonDown("Jump") && !isJumping)
+        if(Input.GetButtonDown("Jump") && isGrounded)
         {
-            Jump();
-        }else{
-            anim.SetBool("Grounded", true);
+            velocity.y = Mathf.Sqrt(jumpForce * -2 * gravity);
+            // soundManager.PlaySFX("Jump");
         }
 
+        if(Input.GetKey(KeyCode.LeftArrow))
+        {   
+            animator.SetBool(leftAnimator , true);
+        }else{
+            animator.SetBool(leftAnimator , false);
+        }
+        
+        if(Input.GetKey(KeyCode.RightArrow))
+        {   
+            animator.SetBool(rightAnimator , true);
+        }else{
+            animator.SetBool(rightAnimator , false);
+        }   
 
     }
 
     private void FixedUpdate()
     {
-        Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
-        Vector3 horizontalMove = transform.right * horizontalInput * speed * Time.fixedDeltaTime * horizontalMultiplier;
-        rb.MovePosition(rb.position + forwardMove + horizontalMove);
+
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+
+        float actionMove = 1f;
+        animator.SetFloat(movementAnimator, actionMove);
+
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        velocity.y +=gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+        animator.SetBool(groundAnimator , controller.isGrounded);
+
+
+
+        if(Input.GetKey(KeyCode.UpArrow))
+        {   
+                Vector3 forwardMove = transform.forward * addSpeed  * Time.fixedDeltaTime;
+                Vector3 horizontalMove = transform.right * horizontalInput * addSpeed * Time.fixedDeltaTime * horizontalMultiplier;
+                Vector3 moveDirection = forwardMove + horizontalMove;
+                controller.Move(moveDirection);
+        }else{
+                Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
+                Vector3 horizontalMove = transform.right * horizontalInput * speed * Time.fixedDeltaTime * horizontalMultiplier;
+                Vector3 moveDirection = forwardMove + horizontalMove;
+                controller.Move(moveDirection);
+        }
 
     }
 
-    private void Jump()
+    private void OnTriggerEnter(Collider other)
     {
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        isJumping = true;
-        anim.SetBool("Grounded", false);
-        soundManager.PlaySFX("Jump");
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            animator.SetBool(hitAnimator, true);
+            // soundManager.PlaySFX("Croack");
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.CompareTag("Floor"))
+        if (other.gameObject.CompareTag("Obstacle"))
         {
-            isJumping = false;
-            anim.SetBool("Hit", false);
-        }
-
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            anim.SetBool("Hit", true);
-            soundManager.PlaySFX("Croack");
+            animator.SetBool(hitAnimator, false);
         }
     }
 
-    private void OnCollisionExit(Collision collision){
-
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            anim.SetBool("Hit", false);
-        }
-    }
 
 }

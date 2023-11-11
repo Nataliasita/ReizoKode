@@ -42,17 +42,17 @@ public class RunnerGameManager : MonoBehaviour
 
     private void Awake()
     {        
-        soundManager = GameObject.FindObjectOfType<SoundManager>();
+        // soundManager = GameObject.FindObjectOfType<SoundManager>();
         OnLoadAllScenes();
-        soundManager.PlayMusic("Music Level");
-        soundManager.MusicVolume(0.1f);
-        InvokeRepeating("PlaySoundAmbientDay", 0f, 25f);
+        // soundManager.PlayMusic("Music Level");
+        // soundManager.MusicVolume(0.1f);
+        // InvokeRepeating("PlaySoundAmbientDay", 0f, 25f);
     }
 
-    private void PlaySoundAmbientDay(){
-        soundManager.PlaySFX("Day");
-        soundManager.LoopMusic = true;
-    }
+    // private void PlaySoundAmbientDay(){
+    //     soundManager.PlaySFX("Day");
+    //     soundManager.LoopMusic = true;
+    // }
     private void OnLoadAllScenes()
     {        
         startScreen.startScreenPanel.SetActive(true);
@@ -150,7 +150,7 @@ public class RunnerGameManager : MonoBehaviour
             int eightyPercent = (int)(0.9f * levelDuration);
             if (timeElapsed >= eightyPercent && !timerSoundPlayed)
             {
-                soundManager.PlaySFX("Timer");
+                // soundManager.PlaySFX("Timer");
                 timerSoundPlayed = true;
             }
             yield return null;
@@ -179,7 +179,7 @@ public class RunnerGameManager : MonoBehaviour
                 Time.timeScale = 0;
                 startScreen.startScreenPanel.SetActive(false);
                 SceneManager.LoadScene("EndScene");
-                soundManager.PlayMusic("Music Win");
+                // soundManager.PlayMusic("Music Win");
             }
         });
 
