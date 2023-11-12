@@ -148,7 +148,7 @@ public class RunnerGameManager : MonoBehaviour
         Time.timeScale = 1;
         lifeController.lifes = 3;
         LoadLevel(level - 1);
-        // groundSpawner.DestroyPreviousLevelTiles();
+        groundSpawner.DestroyPreviousLevelTiles();
         groundSpawner.SetCurrentLevel(level - 1);
         groundSpawner.StartSpawning();
 
@@ -200,24 +200,32 @@ public class RunnerGameManager : MonoBehaviour
         Time.timeScale = 0;
         winPanel.SetActive(true);
 
-        nextLevelButton.onClick.AddListener(() =>
-        {
-            startScreen.startScreenPanel.SetActive(true);
-            levelCompleted = false;
-            LoadLevel(currentLevel);
-            groundSpawner.DestroyPreviousLevelTiles();
-            groundSpawner.StartSpawning();
-            Time.timeScale = 0;
+        // nextLevelButton.onClick.AddListener(() =>
+        // {
+        //     startScreen.startScreenPanel.SetActive(true);
+        //     levelCompleted = false;
+        //     LoadLevel(currentLevel);
+        //     groundSpawner.DestroyPreviousLevelTiles();
+        //     groundSpawner.StartSpawning();
+        //     Time.timeScale = 0;
 
-            if (currentLevel >= groundSpawner.groundTilePrefabs.Count)
-            {
-                Time.timeScale = 0;
-                startScreen.startScreenPanel.SetActive(false);
-                SceneManager.LoadScene("EndScene");
-                soundManager.PlayMusic("Music Win");
-            }
-        });
+        //     if (currentLevel >= groundSpawner.groundTilePrefabs.Count)
+        //     {
+        //         Time.timeScale = 0;
+        //         startScreen.startScreenPanel.SetActive(false);
+        //         SceneManager.LoadScene("EndScene");
+        //         soundManager.PlayMusic("Music Win");
+        //     }
+        // });
 
         Debug.Log("Has completado el nivel " + currentLevel);
+    }
+
+    public void LevelWin(){
+        winPanel.SetActive(true);
+        Time.timeScale = 0;
+        startScreen.startScreenPanel.SetActive(false);
+        SceneManager.LoadScene("EndScene");
+        soundManager.PlayMusic("Music Win");
     }
 }

@@ -645,7 +645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1497234515}
   progressBar: {fileID: 1658915424}
-  levelDuration: 140
+  levelDuration: 110
   playerPanel: {fileID: 370533044}
   characters:
   - {fileID: 11400000, guid: 8724bca0296e3eb4b95f056cc84defd5, type: 2}
@@ -726,6 +726,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5189975080077183198, guid: c723b2c2a8b9bef479fc1a9172d4a945,
+        type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5189975080077183198, guid: c723b2c2a8b9bef479fc1a9172d4a945,
+        type: 3}
+      propertyPath: addSpeed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5189975080077183199, guid: c723b2c2a8b9bef479fc1a9172d4a945,
         type: 3}
@@ -2382,6 +2392,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 488752685}
     m_Modifications:
+    - target: {fileID: 3374133387887191640, guid: 18aaa194315f47b4883410c95815f8cc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374133387887191640, guid: 18aaa194315f47b4883410c95815f8cc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.756
+      objectReference: {fileID: 0}
     - target: {fileID: 4184181852344230680, guid: 18aaa194315f47b4883410c95815f8cc,
         type: 3}
       propertyPath: m_RootOrder
@@ -2436,6 +2456,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184181852344230683, guid: 18aaa194315f47b4883410c95815f8cc,
+        type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184181852344230683, guid: 18aaa194315f47b4883410c95815f8cc,
+        type: 3}
+      propertyPath: addSpeed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4184181852344230692, guid: 18aaa194315f47b4883410c95815f8cc,
         type: 3}
@@ -4467,7 +4497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1502499702
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4667,7 +4697,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: -40}
+  m_AnchoredPosition: {x: -3, y: -40}
   m_SizeDelta: {x: 343, y: 351}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1631728481
@@ -5044,7 +5074,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 42, y: -133}
+  m_AnchoredPosition: {x: 0.5, y: -133}
   m_SizeDelta: {x: 110, y: 91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1744522780
@@ -5094,6 +5124,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1757069999}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 226345004}
+        m_TargetAssemblyTypeName: RunnerGameManager, Assembly-CSharp
+        m_MethodName: LevelWin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6617,11 +6659,11 @@ RectTransform:
   m_Father: {fileID: 325313830}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: -383}
-  m_SizeDelta: {x: 398.1447, y: 134.0356}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 1, y: 89.98221}
+  m_SizeDelta: {x: 398.1447, y: 134.03558}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2061011144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7171,7 +7213,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 468, y: -14.4513}
+  m_AnchoredPosition: {x: 482, y: -14.4513}
   m_SizeDelta: {x: 199.7044, y: 147.9292}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2129958867
@@ -7297,6 +7339,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3218963682154154080, guid: f7d9f50f72f213745a65a8eef952acf5,
+        type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3218963682154154080, guid: f7d9f50f72f213745a65a8eef952acf5,
+        type: 3}
+      propertyPath: addSpeed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3218963682154154085, guid: f7d9f50f72f213745a65a8eef952acf5,
         type: 3}
