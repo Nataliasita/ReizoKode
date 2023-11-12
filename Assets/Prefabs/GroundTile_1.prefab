@@ -15275,6 +15275,10 @@ MonoBehaviour:
   - {fileID: 3513120157906751832, guid: b3cb902c169591245a71848361c0889a, type: 3}
   pointPrefab: {fileID: 681084056512101516, guid: fda0350c9f433b94d8ad81361dbb233d,
     type: 3}
+  rockPrefab: {fileID: 4230047458665737336, guid: 747faa60f08d3914792a8f449de868ea,
+    type: 3}
+  spawnPositionRock: {x: 0.207, y: 1.204, z: -0.743}
+  spawnRotationRock: {x: -80.88, y: 24.63, z: 0}
 --- !u!1 &5583909441033594236
 GameObject:
   m_ObjectHideFlags: 0
@@ -20481,7 +20485,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5985517606454417229}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -20655,6 +20659,7 @@ Transform:
   - {fileID: 7196157254405136052}
   - {fileID: 8813907096812167906}
   - {fileID: 2076510894055212937}
+  - {fileID: 6670680807901218420}
   m_Father: {fileID: 2298648105441199604}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25682,6 +25687,51 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1 &8836452441170133668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6670680807901218420}
+  - component: {fileID: 7904515867469120829}
+  m_Layer: 0
+  m_Name: GameObject (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6670680807901218420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836452441170133668}
+  m_LocalRotation: {x: -0, y: 0.039199986, z: -0, w: 0.9992314}
+  m_LocalPosition: {x: -38.320877, y: 0, z: 203.63788}
+  m_LocalScale: {x: 1, y: 1, z: 0.329375}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7832158853160626529}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 4.493, z: 0}
+--- !u!65 &7904515867469120829
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836452441170133668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 17.645374, y: 19.992382, z: 104.39235}
+  m_Center: {x: 23.286314, y: 5.49065, z: 3.5826645}
 --- !u!1001 &7455966640046225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31474,17 +31524,17 @@ PrefabInstance:
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
       propertyPath: deepColor.g
-      value: 0.44324297
+      value: 0.4431077
       objectReference: {fileID: 0}
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
       propertyPath: deepColor.r
-      value: 0.4057443
+      value: 0.405609
       objectReference: {fileID: 0}
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
       propertyPath: shoreColor.b
-      value: 0.301715
+      value: 0.30157968
       objectReference: {fileID: 0}
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
@@ -31504,7 +31554,7 @@ PrefabInstance:
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
       propertyPath: horizonColor.g
-      value: 0.22720519
+      value: 0.22706991
       objectReference: {fileID: 0}
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
@@ -31519,7 +31569,7 @@ PrefabInstance:
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
       propertyPath: shallowColor.g
-      value: 0.40401426
+      value: 0.403879
       objectReference: {fileID: 0}
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
@@ -31539,12 +31589,12 @@ PrefabInstance:
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
       propertyPath: underwaterColor.g
-      value: 0.3095581
+      value: 0.3094228
       objectReference: {fileID: 0}
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
       propertyPath: underwaterColor.r
-      value: 0.20368859
+      value: 0.20356035
       objectReference: {fileID: 0}
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}

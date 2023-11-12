@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78be16ead4f6597479c3968229ea6d9d, type: 3}
+  m_Name: KaandePersonaje
+  m_EditorClassIdentifier: 
+  character: {fileID: 3218963682154154107, guid: f7d9f50f72f213745a65a8eef952acf5,
+    type: 3}
+  image: {fileID: 21300000, guid: bee37789c69de7f4f9092917e697b222, type: 3}
+  name: KAANDE
+  power: 'Camouflage: This power allows him to pass through physical matter for a
+    few seconds'

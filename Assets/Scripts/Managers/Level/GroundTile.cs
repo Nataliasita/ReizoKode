@@ -9,11 +9,14 @@ public class GroundTile : MonoBehaviour
     [Header("Objects")]
     [SerializeField] GameObject[] obstaclePrefab;
     [SerializeField] GameObject pointPrefab;
-
-
-    private void Start()
+    public GameObject rockPrefab;
+    public Vector3 spawnPositionRock = new Vector3(0.207f, 1.204f, -0.743f);
+    public Vector3 spawnRotationRock  = new Vector3(-80.88f, 24.63f, 0f);
+    private void Start() 
     {
         groundSpawner = GameObject.FindObjectOfType<GroundSpawner>();
+        Quaternion rotationRock = Quaternion.Euler(spawnRotationRock);
+        Instantiate(rockPrefab,spawnPositionRock , rotationRock);
     }
 
     private void OnTriggerExit(Collider other)

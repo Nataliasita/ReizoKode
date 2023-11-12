@@ -15,10 +15,17 @@ public class RunnerGameManager : MonoBehaviour
     [SerializeField] private float levelDuration = 60f;
 
     [Header("Others")]
-    [SerializeField] private GameObject playerCharacter;
+    // [SerializeField] private GameObject playerCharacter;
+    [SerializeField] private GameObject playerPanel;
+
+    public List<Characters> characters;
 
     [Header("Win and Lose Panels")]
     [SerializeField] private GameObject winPanel;
+
+    public GameObject prefabPlayerBase; 
+    public GameObject prefabPlayer2; 
+    public GameObject prefabPlayer3; 
     [SerializeField] private Button nextLevelButton;
     [SerializeField] private Button restartWinButton;
     [SerializeField] private Button restartLoseButton;
@@ -36,23 +43,48 @@ public class RunnerGameManager : MonoBehaviour
     [SerializeField] private GroundSpawner groundSpawner;
     [SerializeField] private LifeController lifeController;
     [SerializeField] private StartScreenController startScreen;
+
+    public int numberPlayer;
     
     private bool levelCompleted = false;
     public static int currentLevel = 0;
 
     private void Awake()
     {        
-        // soundManager = GameObject.FindObjectOfType<SoundManager>();
+        playerPanel.SetActive(true);
+        soundManager = GameObject.FindObjectOfType<SoundManager>();
         OnLoadAllScenes();
-        // soundManager.PlayMusic("Music Level");
-        // soundManager.MusicVolume(0.1f);
-        // InvokeRepeating("PlaySoundAmbientDay", 0f, 25f);
+        soundManager.PlayMusic("Music Level");
+        soundManager.MusicVolume(0.1f);
+        InvokeRepeating("PlaySoundAmbientDay", 0f, 25f);
     }
 
-    // private void PlaySoundAmbientDay(){
-    //     soundManager.PlaySFX("Day");
-    //     soundManager.LoopMusic = true;
-    // }
+    void Update()
+    {
+        if(numberPlayer == 0){
+            prefabPlayerBase.SetActive(true);
+            prefabPlayer2.SetActive(false);
+            prefabPlayer3.SetActive(false);
+        }
+        else if(numberPlayer == 1)
+        {
+            prefabPlayer2.SetActive(true);
+            prefabPlayerBase.SetActive(false);
+            prefabPlayer3.SetActive(false);
+        }
+        else if(numberPlayer == 2)
+        {
+            prefabPlayer3.SetActive(true);
+            prefabPlayerBase.SetActive(false);
+            prefabPlayer2.SetActive(false);
+        }
+    }
+
+    private void PlaySoundAmbientDay(){
+        soundManager.PlaySFX("Day");
+        soundManager.LoopMusic = true;
+    }
+
     private void OnLoadAllScenes()
     {        
         startScreen.startScreenPanel.SetActive(true);
@@ -138,7 +170,10 @@ public class RunnerGameManager : MonoBehaviour
         losePanel.SetActive(false);
     }
 
-    IEnumerator LevelTimer()
+    IEnumerator 
+    
+    
+    LevelTimer()
     {
         float timeElapsed = 0f;
         bool timerSoundPlayed = false;    
@@ -150,7 +185,7 @@ public class RunnerGameManager : MonoBehaviour
             int eightyPercent = (int)(0.9f * levelDuration);
             if (timeElapsed >= eightyPercent && !timerSoundPlayed)
             {
-                // soundManager.PlaySFX("Timer");
+                soundManager.PlaySFX("Timer");
                 timerSoundPlayed = true;
             }
             yield return null;
@@ -179,7 +214,7 @@ public class RunnerGameManager : MonoBehaviour
                 Time.timeScale = 0;
                 startScreen.startScreenPanel.SetActive(false);
                 SceneManager.LoadScene("EndScene");
-                // soundManager.PlayMusic("Music Win");
+                soundManager.PlayMusic("Music Win");
             }
         });
 

@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public Transform groundCheck;
     private bool isGrounded;
+    private bool activate = false;
     public float jumpForce = 3f;
     public Animator animator;
     public string movementAnimator;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public string hitAnimator;
     public string leftAnimator;
     public string rightAnimator;
+    public string startAnimator;
     private SoundManager soundManager;
 
     public float addSpeed = 5.0f;
@@ -37,6 +39,10 @@ public class PlayerController : MonoBehaviour
     {   
         scoreManager = FindObjectOfType<ScoreUIController>();
         animator = GetComponent<Animator>();
+
+        animator.SetBool(startAnimator, true);
+        transform.position = new Vector3(0f, 2.714f, 0f);
+        Invoke("StopAnimation", 8f);
     }
     void Update() {
         
@@ -44,7 +50,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpForce * -2 * gravity);
-            // soundManager.PlaySFX("Jump");
+            soundManager.PlaySFX("Jump");
         }
 
         if(Input.GetKey(KeyCode.LeftArrow))
@@ -65,32 +71,34 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(activate == true){
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
 
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+            float actionMove = 1f;
+            animator.SetFloat(movementAnimator, actionMove);
 
-        float actionMove = 1f;
-        animator.SetFloat(movementAnimator, actionMove);
-
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        velocity.y +=gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-        animator.SetBool(groundAnimator , controller.isGrounded);
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+            velocity.y +=gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+            animator.SetBool(groundAnimator , controller.isGrounded);
 
 
 
-        if(Input.GetKey(KeyCode.UpArrow))
-        {   
-                Vector3 forwardMove = transform.forward * addSpeed  * Time.fixedDeltaTime;
-                Vector3 horizontalMove = transform.right * horizontalInput * addSpeed * Time.fixedDeltaTime * horizontalMultiplier;
-                Vector3 moveDirection = forwardMove + horizontalMove;
-                controller.Move(moveDirection);
-        }else{
-                Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
-                Vector3 horizontalMove = transform.right * horizontalInput * speed * Time.fixedDeltaTime * horizontalMultiplier;
-                Vector3 moveDirection = forwardMove + horizontalMove;
-                controller.Move(moveDirection);
+            if(Input.GetKey(KeyCode.UpArrow))
+            {   
+                    Vector3 forwardMove = transform.forward * addSpeed  * Time.fixedDeltaTime;
+                    Vector3 horizontalMove = transform.right * horizontalInput * addSpeed * Time.fixedDeltaTime * horizontalMultiplier;
+                    Vector3 moveDirection = forwardMove + horizontalMove;
+                    controller.Move(moveDirection);
+            }else{
+                    Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
+                    Vector3 horizontalMove = transform.right * horizontalInput * speed * Time.fixedDeltaTime * horizontalMultiplier;
+                    Vector3 moveDirection = forwardMove + horizontalMove;
+                    controller.Move(moveDirection);
+            }
         }
+        
 
     }
 
@@ -99,7 +107,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             animator.SetBool(hitAnimator, true);
-            // soundManager.PlaySFX("Croack");
+            soundManager.PlaySFX("Croack");
         }
     }
 
@@ -109,6 +117,14 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool(hitAnimator, false);
         }
+    }
+
+    void StopAnimation()
+    {   
+        transform.position = new Vector3(0f, 0f, 0f);
+        activate = true;
+        animator.SetBool(startAnimator, false);
+
     }
 
 
