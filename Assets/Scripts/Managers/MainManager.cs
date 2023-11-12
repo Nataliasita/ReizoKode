@@ -34,4 +34,10 @@ public class MainManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
 }

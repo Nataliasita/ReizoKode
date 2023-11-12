@@ -148,7 +148,7 @@ public class RunnerGameManager : MonoBehaviour
         Time.timeScale = 1;
         lifeController.lifes = 3;
         LoadLevel(level - 1);
-        groundSpawner.DestroyPreviousLevelTiles();
+        // groundSpawner.DestroyPreviousLevelTiles();
         groundSpawner.SetCurrentLevel(level - 1);
         groundSpawner.StartSpawning();
 
@@ -162,7 +162,7 @@ public class RunnerGameManager : MonoBehaviour
         Time.timeScale = 1;
         lifeController.lifes = 3;
         LoadLevel(level);
-        groundSpawner.DestroyPreviousLevelTiles();
+        // groundSpawner.DestroyPreviousLevelTiles();
         groundSpawner.SetCurrentLevel(level);
         groundSpawner.StartSpawning();
 

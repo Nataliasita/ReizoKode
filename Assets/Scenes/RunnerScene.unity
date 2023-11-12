@@ -2758,6 +2758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundTilePrefabs:
   - {fileID: 5073844280987542939, guid: c7d8d136a9a1bdd42b5a86d58ba9bf36, type: 3}
+  - {fileID: 5073844280987542939, guid: c7d8d136a9a1bdd42b5a86d58ba9bf36, type: 3}
   nextSpawnPoint: {fileID: 1497234515}
   RunnerGameManager: {fileID: 226345004}
   startScreen: {fileID: 563090050}
